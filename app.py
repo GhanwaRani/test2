@@ -1,39 +1,31 @@
-import tkinter as tk
 import time
-import math
+import os
 
-def update_clock():
-    current_time = time.strftime('%H:%M:%S')
-    clock_label.config(text=current_time)
-    clock_label.after(1000, update_clock)  # Update every second
+def clear_screen():
+    # Clear command for Windows or Unix systems
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-def draw_dial():
-    canvas.create_oval(50, 50, 250, 250, width=2, outline='black')  # Outer circle
+def draw_clock():
+    dial = [
+        "        12        ",
+        "     11    1      ",
+        "   10        2    ",
+        "  9    GR     3   ",
+        "   8         4    ",
+        "     7    5       ",
+        "        6         ",
+    ]
+    for line in dial:
+        print(line)
 
-    # Draw hour numbers
-    for i in range(12):
-        angle_deg = i * 30
-        angle_rad = math.radians(angle_deg)
-        x = 150 + 80 * math.sin(angle_rad)
-        y = 150 - 80 * math.cos(angle_rad)
-        canvas.create_text(x, y, text=str(i+1), font=('Helvetica', 12, 'bold'))
+def start_clock():
+    while True:
+        clear_screen()
+        print("======= GR CLOCK =======\n")
+        draw_clock()
+        current_time = time.strftime('%H:%M:%S')
+        print(f"\n     Time: {current_time}")
+        time.sleep(1)
 
-    # Add 'GR' label at the center
-    canvas.create_text(150, 150, text='GR', font=('Helvetica', 16, 'bold'), fill='darkblue')
-
-# Create main window
-window = tk.Tk()
-window.title("GR Clock")
-
-# Digital clock label
-clock_label = tk.Label(window, text="", font=('Helvetica', 36), bg='black', fg='white')
-clock_label.pack(pady=10)
-
-# Clock dial canvas
-canvas = tk.Canvas(window, width=300, height=300, bg='white', highlightthickness=0)
-canvas.pack()
-
-draw_dial()
-update_clock()
-
-window.mainloop()
+if __name__ == "__main__":
+    start_clock()
