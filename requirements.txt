@@ -1,13 +1,1 @@
 
-# For math operations (comes with Python standard library)
-# No need to list 'math' or 'time' as they are built-in
-
-# Optional: Use pillow for adding images to the clock face
-Pillow>=9.0.0
-
-# Optional: pyinstaller to package the app into an executable
-pyinstaller>=5.0
-
-# Optional: playsound for tick sound (if you want audio feedback)
-playsound>=1.2.2
-
