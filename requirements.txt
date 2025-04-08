@@ -1,5 +1,3 @@
-# Core GUI Library (comes pre-installed with most Python versions)
-tk
 
 # For math operations (comes with Python standard library)
 # No need to list 'math' or 'time' as they are built-in
