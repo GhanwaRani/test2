@@ -1,31 +1,30 @@
+# gr_streamlit_clock.py
+import streamlit as st
 import time
-import os
+from datetime import datetime
 
-def clear_screen():
-    # Clear command for Windows or Unix systems
-    os.system('cls' if os.name == 'nt' else 'clear')
+st.set_page_config(page_title="GR Clock", layout="centered")
 
-def draw_clock():
-    dial = [
-        "        12        ",
-        "     11    1      ",
-        "   10        2    ",
-        "  9    GR     3   ",
-        "   8         4    ",
-        "     7    5       ",
-        "        6         ",
-    ]
-    for line in dial:
-        print(line)
+st.markdown("<h1 style='text-align: center;'>🕒 GR Clock</h1>", unsafe_allow_html=True)
 
-def start_clock():
-    while True:
-        clear_screen()
-        print("======= GR CLOCK =======\n")
-        draw_clock()
-        current_time = time.strftime('%H:%M:%S')
-        print(f"\n     Time: {current_time}")
-        time.sleep(1)
+# ASCII-style dial (text-based)
+dial = """
+        🕛        
+    🕚       🕐    
+  🕙    GR     🕑  
+    🕘       🕒    
+        🕞        
+"""
 
-if __name__ == "__main__":
-    start_clock()
+st.markdown(f"<pre style='text-align: center;'>{dial}</pre>", unsafe_allow_html=True)
+
+# Clock display area
+clock_placeholder = st.empty()
+
+while True:
+    now = datetime.now().strftime('%H:%M:%S')
+    clock_placeholder.markdown(
+        f"<h2 style='text-align: center; color: white; background-color: black; padding: 10px;'>{now}</h2>",
+        unsafe_allow_html=True
+    )
+    time.sleep(1)
